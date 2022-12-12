@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
+
 object RetrofitInst {
 
     val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()

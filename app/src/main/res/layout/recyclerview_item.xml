@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/nameText"
-            android:layout_width="231dp"
+            android:layout_width="175dp"
             android:layout_height="26dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
@@ -42,15 +42,25 @@
 
         <TextView
             android:id="@+id/descriptionText"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
+            android:layout_width="185dp"
+            android:layout_height="38dp"
             android:layout_marginTop="4dp"
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.177"
+            app:layout_constraintHorizontal_bias="0.141"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="78dp"
+            android:layout_height="81dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/btn_dialog" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
