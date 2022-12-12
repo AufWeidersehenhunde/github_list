@@ -3,16 +3,17 @@ package com.example.githabapi
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.api.databinding.RecyclerviewItemBinding
-import com.example.githabapi.DBandprovider.GithubDb
+
 
 
 class MyAdapter(
-    private val info: (GithubDb) -> Unit
+    private val info: (RepositoryRemoteItemEntity) -> Unit
 ) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-    var item: List<GithubDb> = listOf()
-    fun set(items: List<GithubDb>) {
+    var item: List<RepositoryRemoteItemEntity?> = listOf()
+    fun set(items: List<RepositoryRemoteItemEntity?>) {
         this.item = items
         notifyDataSetChanged()
     }
@@ -21,8 +22,8 @@ class MyAdapter(
         RecyclerView.ViewHolder(itemBinding.root) {
         private val binding = itemBinding
         fun bind(
-            repositoryItems: GithubDb,
-            info: (GithubDb) -> Unit
+            repositoryItems: RepositoryRemoteItemEntity,
+            info: (RepositoryRemoteItemEntity) -> Unit
         ) {
             binding.apply {
                 nameText.text = repositoryItems.name
@@ -31,6 +32,9 @@ class MyAdapter(
                 recitem.setOnClickListener {
                     info(repositoryItems)
                 }
+                Glide.with(imageView.context)
+                    .load(repositoryItems.owner.avatar_url)
+                    .into(imageView)
             }
             return
         }
@@ -44,7 +48,7 @@ class MyAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(item[position], info)
+        item[position]?.let { holder.bind(it, info) }
     }
 
     override fun getItemCount(): Int {

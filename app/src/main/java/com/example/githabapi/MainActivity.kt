@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewModelMain.create()
         setContentView(R.layout.activity_main)
-        viewModelMain.observeRepositories(1)
     }
 
 

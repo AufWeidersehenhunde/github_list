@@ -1,16 +1,8 @@
 package com.example.githabapi.HomeFragment
 
-import android.graphics.Color
-import android.graphics.PorterDuff
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -38,8 +30,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
     private fun initView() {
         this.adapterHome =
-            MyAdapter(
-                { viewModelHome.routeToInfo(it.id) })
+            MyAdapter({viewModelHome.routeToInfo(it)})
 
         with(viewBinding.recyclerView) {
             layoutManager = LinearLayoutManager(
@@ -47,12 +38,11 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
             )
             adapter = adapterHome
         }
-        viewModelHome.observeAllPersons()
     }
 
 
     private fun observeElement() {
-        viewModelHome.listCharacters.onEach {
+        viewModelHome.listRepositories.onEach {
             adapterHome?.set(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
