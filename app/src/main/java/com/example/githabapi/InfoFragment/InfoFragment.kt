@@ -1,6 +1,9 @@
 package com.example.githabapi.InfoFragment
 
 
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -23,6 +26,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         private const val IMAGE = "IMAGE"
         private const val DESCRIPTION = "DESCRIPTION"
         private const val LOGIN  = "LOGIN"
+        private const val HTML = "HTML"
         fun getInstance(model: RepositoryRemoteItemEntity) = InfoFragment().apply {
             arguments = Bundle().apply {
                 model.id?.let { putInt(DATA, it) }
@@ -31,6 +35,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
                 putString(IMAGE, model.owner.avatar_url)
                 putString(DESCRIPTION, model.description)
                 putString(LOGIN, model.owner.login)
+                putString(HTML, model.htmlUrl)
             }
         }
     }
@@ -49,6 +54,11 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
                     .load(arguments?.getString(IMAGE))
                     .into(imageViewSecond)
             }
+        }
+        viewBinding.btnHtml.setOnClickListener {
+                val intent = Intent(ACTION_VIEW)
+                intent.data = Uri.parse(arguments?.getString(HTML))
+                startActivity(intent)
         }
         viewBinding.back.setOnClickListener {
             viewModelInfo.back()

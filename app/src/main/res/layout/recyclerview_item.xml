@@ -27,10 +27,14 @@
         <TextView
             android:id="@+id/nameText"
             android:layout_width="175dp"
-            android:layout_height="26dp"
+            android:layout_height="25dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:shadowColor="#AB35AF"
+            android:shadowDx="22"
+            android:shadowDy="22"
+            android:shadowRadius="11"
             android:text="TextView"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -42,8 +46,8 @@
 
         <TextView
             android:id="@+id/descriptionText"
-            android:layout_width="185dp"
-            android:layout_height="38dp"
+            android:layout_width="175dp"
+            android:layout_height="35dp"
             android:layout_marginTop="4dp"
             android:text="TextView"
             android:textColor="@color/black"
@@ -52,11 +56,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
-            android:layout_width="78dp"
-            android:layout_height="81dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="28dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

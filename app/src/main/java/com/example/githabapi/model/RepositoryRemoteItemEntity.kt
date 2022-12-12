@@ -8,5 +8,6 @@ data class RepositoryRemoteItemEntity(
     @Json(name ="full_name") val fullName: String,
     @Json(name ="private") val isPrivate: Boolean,
     @Json(name ="owner") val owner: OwnerItemEntity,
-    @Json(name ="description") val description: String?
+    @Json(name ="description") val description: String?,
+    @Json(name = "html_url") val htmlUrl:String?
 )
