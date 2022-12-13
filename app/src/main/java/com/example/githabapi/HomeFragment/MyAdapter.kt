@@ -1,11 +1,11 @@
-package com.example.githabapi
+package com.example.githabapi.HomeFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.api.databinding.RecyclerviewItemBinding
-
+import com.example.githabapi.RepositoryRemoteItemEntity
 
 
 class MyAdapter(
