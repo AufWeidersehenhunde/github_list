@@ -2,6 +2,7 @@ package com.example.githabapi.InfoFragment
 
 
 import android.content.Intent
+import android.content.Intent.ACTION_SEND
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
@@ -20,22 +21,10 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
     private val viewBinding: FragmentInfoBinding by viewBinding()
 
     companion object {
-        private const val DATA = "UUID"
-        private const val NAME = "NAME"
-        private const val FULLNAME = "FULLNAME"
-        private const val IMAGE = "IMAGE"
-        private const val DESCRIPTION = "DESCRIPTION"
-        private const val LOGIN  = "LOGIN"
-        private const val HTML = "HTML"
+        private const val Model = "MODEL"
         fun getInstance(model: RepositoryRemoteItemEntity) = InfoFragment().apply {
             arguments = Bundle().apply {
-                model.id?.let { putInt(DATA, it) }
-                putString(NAME, model.name)
-                putString(FULLNAME, model.fullName)
-                putString(IMAGE, model.owner.avatar_url)
-                putString(DESCRIPTION, model.description)
-                putString(LOGIN, model.owner.login)
-                putString(HTML, model.htmlUrl)
+                putSerializable(Model, model)
             }
         }
     }
@@ -43,26 +32,37 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val uuidForInfo = arguments?.getInt(DATA)
-        if (uuidForInfo != null) {
+        val model = arguments?.getSerializable(Model) as RepositoryRemoteItemEntity
+        if (model != null) {
             with(viewBinding) {
-                descriptionTxt.text = arguments?.getString(DESCRIPTION)
-                fullnameTxt.text = arguments?.getString(FULLNAME)
-                nameTxt.text = arguments?.getString(NAME)
-                loginTxt.text = arguments?.getString(LOGIN)
+                descriptionTxt.text = model.description
+                fullnameTxt.text = "FullName: ${ model.fullName }"
+                nameTxt.text = "Name: ${ model.name }"
+                loginTxt.text = "Login: ${ model.owner.login }"
                 Glide.with(imageViewSecond.context)
-                    .load(arguments?.getString(IMAGE))
+                    .load(model.owner.avatar_url)
                     .into(imageViewSecond)
             }
         }
-        viewBinding.btnHtml.setOnClickListener {
+        with(viewBinding) {
+            btnHtml.setOnClickListener {
                 val intent = Intent(ACTION_VIEW)
-                intent.data = Uri.parse(arguments?.getString(HTML))
+                intent.data = Uri.parse(model.htmlUrl)
                 startActivity(intent)
-        }
-        viewBinding.back.setOnClickListener {
-            viewModelInfo.back()
+            }
+
+            back.setOnClickListener {
+                viewModelInfo.back()
+            }
+
+            share.setOnClickListener {
+                val intent = Intent(ACTION_SEND)
+                intent.putExtra(Intent.EXTRA_TEXT, "чекни норм статью: ${model.htmlUrl}")
+                intent.setType("text/plain")
+                startActivity(Intent.createChooser(intent, "share"))
+            }
         }
 
     }
 }
+

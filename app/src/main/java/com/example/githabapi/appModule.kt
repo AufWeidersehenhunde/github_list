@@ -1,6 +1,7 @@
 package com.example.githabapi
 
 
+import com.example.githabapi.Activity.MainActivityViewModel
 import com.example.githabapi.HomeFragment.HomeViewModel
 import com.example.githabapi.InfoFragment.InfoViewModel
 import com.example.githabapi.Retrofit.RepositoryAPI

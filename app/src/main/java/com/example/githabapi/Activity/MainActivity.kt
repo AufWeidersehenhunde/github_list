@@ -1,4 +1,4 @@
-package com.example.githabapi
+package com.example.githabapi.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

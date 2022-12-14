@@ -14,7 +14,7 @@
         android:theme="@style/Theme.GithabAPI"
         tools:targetApi="31">
         <activity
-            android:name="com.example.githabapi.MainActivity"
+            android:name="com.example.githabapi.Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
