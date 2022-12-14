@@ -8,5 +8,5 @@ import retrofit2.http.Query
 
 interface ApiGit {
     @GET("repositories")
-    suspend fun getFuckingRepo(@Query("since") since: Int):Response<MutableList<RepositoryRemoteItemEntity>>
+    suspend fun getFuckingRepo(@Query("since") since: Int):Response<List<RepositoryRemoteItemEntity>>
 }

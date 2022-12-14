@@ -12,14 +12,17 @@ class MyAdapter(
     private val info: (RepositoryRemoteItemEntity) -> Unit
 ) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-     var item: MutableList<RepositoryRemoteItemEntity?> = mutableListOf()
-    fun set(items: MutableList<RepositoryRemoteItemEntity?>) {
+     var item: List<RepositoryRemoteItemEntity?> = mutableListOf()
+
+    fun set(items: List<RepositoryRemoteItemEntity?>) {
         this.item = items
         notifyDataSetChanged()
     }
 
-    fun add(model: MutableList<RepositoryRemoteItemEntity?>){
-        item.addAll(model)
+    fun add(model: List<RepositoryRemoteItemEntity?>){
+        val mutableItem = item.toMutableList()
+        mutableItem.addAll(model)
+        item = mutableItem
     }
     class MyViewHolder(itemBinding: RecyclerviewItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {

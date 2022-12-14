@@ -51,7 +51,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
             adapter = adapterHome
         }
         viewBinding.swipe.setOnRefreshListener {
-                observeElement()
+                viewModelHome.updateToBegins()
                 stopRefresh()
         }
         viewBinding.recyclerView.addOnScrollListener(object : PaginationScrollListener(viewBinding.recyclerView.layoutManager as LinearLayoutManager) {
@@ -91,13 +91,13 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
     private fun addElements(){
         loadNextPage()
         viewModelHome.listRepositories.onEach {
-            adapterHome?.add(it as ArrayList<RepositoryRemoteItemEntity?>)
+            adapterHome?.add(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun observeElement() {
         viewModelHome.listRepositories.onEach {
-            adapterHome?.set(it as ArrayList<RepositoryRemoteItemEntity?>)
+            adapterHome?.set(it)
             viewBinding.swipe.isRefreshing = false
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }

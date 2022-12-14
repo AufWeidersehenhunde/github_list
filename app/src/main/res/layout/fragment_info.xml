@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/nameTxt"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/dummy"
         android:layout_marginLeft="10dp"
@@ -20,7 +20,7 @@
         android:text="Hello"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/imageViewSecond"
-        tools:layout_editor_absoluteX="47dp" />
+        />
 
     <ImageView
         android:id="@+id/imageViewSecond"
@@ -36,7 +36,7 @@
     <TextView
         android:id="@+id/loginTxt"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/dummy"
         android:gravity="center"
@@ -51,7 +51,7 @@
     <TextView
         android:id="@+id/fullnameTxt"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/dummy"
         android:gravity="center"
@@ -65,7 +65,7 @@
     <TextView
         android:id="@+id/descriptionTxt"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/dummy"
         android:gravity="center"

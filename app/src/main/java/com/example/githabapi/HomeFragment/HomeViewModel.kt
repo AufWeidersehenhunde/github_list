@@ -16,10 +16,8 @@ class HomeViewModel (
     private val router: Router,
     private val repositoryAPI: RepositoryAPI
 ): ViewModel() {
-    private val _listRepositories = MutableStateFlow<MutableList<RepositoryRemoteItemEntity?>>(
-        mutableListOf()
-    )
-    val listRepositories : MutableStateFlow<MutableList<RepositoryRemoteItemEntity?>> = _listRepositories
+    private val _listRepositories = MutableStateFlow<List<RepositoryRemoteItemEntity?>>(listOf())
+    val listRepositories : MutableStateFlow<List<RepositoryRemoteItemEntity?>> = _listRepositories
     init {
         observeAllRepositories()
     }
@@ -29,6 +27,10 @@ class HomeViewModel (
             val characters = repositoryAPI.getGithub(since)
             _listRepositories.value = characters.toMutableList()
         }
+    }
+
+    fun updateToBegins(){
+        router.newRootScreen(Screens.getHomeFragment())
     }
 
     fun observeAllRepositories()  {

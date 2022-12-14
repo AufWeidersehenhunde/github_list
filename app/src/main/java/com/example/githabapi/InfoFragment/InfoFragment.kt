@@ -44,21 +44,23 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
                     .into(imageViewSecond)
             }
         }
-        viewBinding.btnHtml.setOnClickListener {
+        with(viewBinding) {
+            btnHtml.setOnClickListener {
                 val intent = Intent(ACTION_VIEW)
                 intent.data = Uri.parse(model.htmlUrl)
                 startActivity(intent)
-        }
+            }
 
-        viewBinding.back.setOnClickListener {
-            viewModelInfo.back()
-        }
+            back.setOnClickListener {
+                viewModelInfo.back()
+            }
 
-        viewBinding.share.setOnClickListener {
-            val intent = Intent(ACTION_SEND)
-            intent.putExtra(Intent.EXTRA_TEXT,"чекни норм статью: ${model.htmlUrl}")
-            intent.setType ("text/plain")
-            startActivity(Intent.createChooser(intent, "share"))
+            share.setOnClickListener {
+                val intent = Intent(ACTION_SEND)
+                intent.putExtra(Intent.EXTRA_TEXT, "чекни норм статью: ${model.htmlUrl}")
+                intent.setType("text/plain")
+                startActivity(Intent.createChooser(intent, "share"))
+            }
         }
 
     }
