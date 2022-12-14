@@ -1,5 +1,6 @@
 package com.example.githabapi
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 
 data class RepositoryRemoteItemEntity(
@@ -10,4 +11,4 @@ data class RepositoryRemoteItemEntity(
     @Json(name ="owner") val owner: OwnerItemEntity,
     @Json(name ="description") val description: String?,
     @Json(name = "html_url") val htmlUrl:String?
-)
+): java.io.Serializable

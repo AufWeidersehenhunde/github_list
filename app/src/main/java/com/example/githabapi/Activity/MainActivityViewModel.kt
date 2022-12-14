@@ -1,11 +1,9 @@
-package com.example.githabapi
+package com.example.githabapi.Activity
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.githabapi.Retrofit.RepositoryAPI
+import com.example.githabapi.Screens
 import com.github.terrakok.cicerone.Router
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class MainActivityViewModel(

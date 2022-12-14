@@ -12,12 +12,15 @@ class MyAdapter(
     private val info: (RepositoryRemoteItemEntity) -> Unit
 ) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-    var item: List<RepositoryRemoteItemEntity?> = listOf()
-    fun set(items: List<RepositoryRemoteItemEntity?>) {
+     var item: MutableList<RepositoryRemoteItemEntity?> = mutableListOf()
+    fun set(items: MutableList<RepositoryRemoteItemEntity?>) {
         this.item = items
         notifyDataSetChanged()
     }
 
+    fun add(model: MutableList<RepositoryRemoteItemEntity?>){
+        item.addAll(model)
+    }
     class MyViewHolder(itemBinding: RecyclerviewItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         private val binding = itemBinding
@@ -26,7 +29,7 @@ class MyAdapter(
             info: (RepositoryRemoteItemEntity) -> Unit
         ) {
             binding.apply {
-                nameText.text = repositoryItems.name
+                nameText.text = "name${repositoryItems.name}"
                 descriptionText.text = repositoryItems.description
 
                 recitem.setOnClickListener {
