@@ -36,33 +36,30 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         if (model != null) {
             with(viewBinding) {
                 descriptionTxt.text = model.description
-                fullnameTxt.text = "FullName: ${ model.fullName }"
-                nameTxt.text = "Name: ${ model.name }"
-                loginTxt.text = "Login: ${ model.owner.login }"
+                fullnameTxt.text = "FullName: ${model.fullName}"
+                nameTxt.text = "Name: ${model.name}"
+                loginTxt.text = "Login: ${model.owner.login}"
                 Glide.with(imageViewSecond.context)
                     .load(model.owner.avatar_url)
                     .into(imageViewSecond)
+                btnHtml.setOnClickListener {
+                    val intent = Intent(ACTION_VIEW)
+                    intent.data = Uri.parse(model.htmlUrl)
+                    startActivity(intent)
+                }
+
+                back.setOnClickListener {
+                    viewModelInfo.back()
+                }
+
+                share.setOnClickListener {
+                    val intent = Intent(ACTION_SEND)
+                    intent.putExtra(Intent.EXTRA_TEXT, "чекни норм статью: ${model.htmlUrl}")
+                    intent.setType("text/plain")
+                    startActivity(Intent.createChooser(intent, "share"))
+                }
             }
         }
-        with(viewBinding) {
-            btnHtml.setOnClickListener {
-                val intent = Intent(ACTION_VIEW)
-                intent.data = Uri.parse(model.htmlUrl)
-                startActivity(intent)
-            }
-
-            back.setOnClickListener {
-                viewModelInfo.back()
-            }
-
-            share.setOnClickListener {
-                val intent = Intent(ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_TEXT, "чекни норм статью: ${model.htmlUrl}")
-                intent.setType("text/plain")
-                startActivity(Intent.createChooser(intent, "share"))
-            }
-        }
-
     }
 }
 

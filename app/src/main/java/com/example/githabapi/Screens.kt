@@ -7,5 +7,4 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 object Screens {
     fun getHomeFragment() = FragmentScreen { HomeFragment() }
     fun getInfoFragment(model: RepositoryRemoteItemEntity) = FragmentScreen { InfoFragment.getInstance(model) }
-
 }

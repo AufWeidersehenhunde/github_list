@@ -24,6 +24,7 @@ class MyAdapter(
         mutableItem.addAll(model)
         item = mutableItem
     }
+
     class MyViewHolder(itemBinding: RecyclerviewItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         private val binding = itemBinding

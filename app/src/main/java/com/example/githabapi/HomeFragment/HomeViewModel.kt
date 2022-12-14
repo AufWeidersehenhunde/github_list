@@ -25,7 +25,7 @@ class HomeViewModel (
     fun observeRepositories(since: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val characters = repositoryAPI.getGithub(since)
-            _listRepositories.value = characters.toMutableList()
+            _listRepositories.value = characters
         }
     }
 
@@ -33,10 +33,10 @@ class HomeViewModel (
         router.newRootScreen(Screens.getHomeFragment())
     }
 
-    fun observeAllRepositories()  {
+    private fun observeAllRepositories()  {
         viewModelScope.launch {
             val repositories = repositoryAPI.getGithub(0)
-                _listRepositories.value = repositories.toMutableList()
+                _listRepositories.value = repositories
             }
         }
 

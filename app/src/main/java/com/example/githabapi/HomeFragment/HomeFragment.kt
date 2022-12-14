@@ -40,9 +40,13 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         initObservers()
     }
 
+
+
+
+
     private fun initView() {
         this.adapterHome =
-            MyAdapter({viewModelHome.routeToInfo(it)})
+            MyAdapter { viewModelHome.routeToInfo(it) }
 
         with(viewBinding.recyclerView) {
             layoutManager = LinearLayoutManager(
